@@ -11,11 +11,6 @@ class FileService implements FileServiceInterface
     {
         $status == FileStatusEnum::ENCRYPT ? $this->encrypt($path) : $this->decrypt($path);
     }
-    public function get_size(string $path): string
-    {
-        return Storage::size($path);
-    }
-
     private function encrypt(string $path): void
     {
         $path="public/".$path;

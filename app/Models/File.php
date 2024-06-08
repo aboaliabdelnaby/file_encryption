@@ -10,7 +10,7 @@ class File extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['name', 'size', 'extension','status', 'path'];
+    protected $fillable = ['name', 'size', 'extension','status', 'path','user_id'];
     protected $casts = [
         'status' => FileStatusEnum::class,
     ];

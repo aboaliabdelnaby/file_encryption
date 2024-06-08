@@ -39,9 +39,11 @@ class FileUpload extends Component
         $validatedData = $this->validate();
         try {
             if (!empty($this->file)) {
+                $filename = time() . '_' . $this->file->getClientOriginalName();
                 $validatedData['size'] = $this->file->getSize();
-                $validatedData['extension'] = $this->file->extension();
-                $validatedData['path'] = $this->file->store($this->location, 'public');
+                $validatedData['extension'] = explode('.', $filename)[1];
+                $validatedData['path'] = $this->file->storeAs($this->location,$filename, 'public');
+                $validatedData['user_id'] = auth()->id();
                 $this->status==$this->fileService->do_operation($validatedData['status'],$validatedData['path']);
             }
             $this->query->create($validatedData);
@@ -56,6 +58,6 @@ class FileUpload extends Component
     protected function resetInputFields(): void
     {
         $this->reset(['name','location','file','status']);
-        $this->dispatch('refreshComponent');
+        $this->dispatch('refresh_parent');
     }
 }

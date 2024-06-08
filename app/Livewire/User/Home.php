@@ -18,7 +18,7 @@ class Home extends Component
 
     protected string $view = 'user.home';
     protected array $searchColumns = ['name', 'size', 'extension'];
-    protected $listeners = ['refreshComponent' => '$refresh', 'do_operation'];
+    protected $listeners = ['refresh_parent', 'do_operation'];
     protected string $message = '';
     private $query;
 
@@ -32,7 +32,7 @@ class Home extends Component
         $data = $this->query->pushPipeline([
             new SearchFilterPipeline($this->searchColumns, $this->search),
             new SortFilterPipeline($this->sortField, $this->sortType)
-        ])->paginate($this->paginatePerPage);
+        ])->where('user_id',auth()->id())->paginate($this->paginatePerPage);
         return view(
             view: 'livewire.' . $this->view,
             data: get_defined_vars()
@@ -51,5 +51,11 @@ class Home extends Component
             $this->dispatch('error', $exception->getMessage());
         }
 
+    }
+    public function refresh_parent(): void
+    {
+        $this->dispatch('$refresh');
+        $this->resetPage();
+        $this->render();
     }
 }

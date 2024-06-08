@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('size');
             $table->string('extension');
             $table->string('path');
+            $table->bigInteger('user_id')->unsigned();
             $table->enum('status',[FileStatusEnum::ENCRYPT->value,FileStatusEnum::DECRYPT->value]);
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

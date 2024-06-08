@@ -86,6 +86,7 @@
 </div>
 @if(auth()->check())
     <script src="{{ asset('js/jquery-3.6.1.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="{{ asset('js/sweetalert2@11.js') }}"></script>
     <script src="{{asset('livewire-events.js')}}"></script>
     <script>

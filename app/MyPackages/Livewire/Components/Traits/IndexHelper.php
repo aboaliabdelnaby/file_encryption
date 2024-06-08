@@ -56,8 +56,7 @@ trait IndexHelper
     public function updatingPage($page): void
     {
         if ($this->showToast) {
-            $trans = trans('share.Current Page');
-            $this->dispatch('page', "$trans ( $page )");
+            $this->dispatch('page', $page);
             return;
         }
         $this->showToast = true;

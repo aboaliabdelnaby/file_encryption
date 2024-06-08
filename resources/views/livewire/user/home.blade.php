@@ -37,8 +37,8 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @forelse($data as $row)
-                            <tr>
+                        @foreach($data as $row)
+                            <tr wire:key="{{ $row->id }}">
                                 <td>{{ $row->name }}</td>
                                 <td>{{ $row->size }}</td>
                                 <td>{{ $row->extension }}</td>
@@ -51,13 +51,14 @@
                                     </a>
                                 </td>
                             </tr>
-                        @empty
+                        @endforeach
+                        @empty($data)
                             <td colspan="100%">
                                 <div class="text-center mt-2" style="font-size: 18px;">
                                     No Data Found
                                 </div>
                             </td>
-                        @endforelse
+                        @endempty
                         </tbody>
                     </table>
                 </div>

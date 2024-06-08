@@ -8,7 +8,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">{{ $title }}</h5>
-                    <button type="button" class="close"  wire:click="$dispatch('closing')">
+                    <button type="button" class="close"  wire:click="$dispatch('closing')" style="margin-left: 70%">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
