@@ -18,7 +18,7 @@ class Home extends Component
 
     protected string $view = 'user.home';
     protected array $searchColumns = ['name', 'size', 'extension'];
-    protected $listeners = ['refresh_parent', 'do_operation'];
+    protected $listeners = ['refresh_parent'=>'$refresh', 'do_operation'];
     protected string $message = '';
     private $query;
 
@@ -51,11 +51,5 @@ class Home extends Component
             $this->dispatch('error', $exception->getMessage());
         }
 
-    }
-    public function refresh_parent(): void
-    {
-        $this->dispatch('$refresh');
-        $this->resetPage();
-        $this->render();
     }
 }
